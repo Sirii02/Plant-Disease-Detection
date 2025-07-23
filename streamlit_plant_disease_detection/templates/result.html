@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <style>
+    /* General Page Styling */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url("{{ url_for('static', filename='image/f.jpg') }}") no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    /* Logout Button Styling */
+    .logout-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #008a4c; /* Red color */
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .logout-button:hover {
+      background-color: #18dc8e; /* Darker red on hover */
+    }
+
+    /* Container Styling */
+    .container {
+      background: rgba(18, 65, 29, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+      width: 60%;
+      max-width: 700px;
+      text-align: center;
+      color: #333;
+      overflow-y: auto;
+      max-height: 75vh; /* Set a fixed height */
+      scrollbar-width: thin; /* Firefox */
+      scrollbar-color: rgba(0, 0, 0, 0.2) transparent; /* Firefox */
+    }
+
+    /* Custom Scrollbar for Webkit browsers (Chrome, Safari) */
+    .container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .container::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+    }
+
+    .container::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 24px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Image Styling */
+    .form-container img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Prediction Box Styling */
+    .prediction-box {
+      background-color: #ffcccc; /* Light red */
+      border: 2px solid #ff0000; /* Red border */
+      border-radius: 10px;
+      padding: 05px;
+      margin-top: 30px;
+      font-size: 20px;
+      color: #b30000; /* Darker red text */
+      font-weight: bold;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-transform: capitalize;
+    }
+
+    /* Upload Link Styling */
+    .upload-link {
+      display: inline-block;
+      margin-top: 40px;
+      font-size: 18px;
+      text-decoration: none;
+      color: #fff700;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      border-bottom: 2px solid #fffb00;
+      padding-bottom: 4px;
+    }
+
+    .healthy-message {
+      background-color: #f0ffcc; /* Light red */
+      border: 2px solid #00ff9d; /* Red border */
+      border-radius: 10px;
+      padding: 05px;
+      margin-top: 30px;
+      font-size: 20px;
+      color: #035327; /* Darker red text */
+      font-weight: bold;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      text-transform: capitalize;
+    }
+
+    .upload-link:hover {
+      color: #efe700;
+    }
+
+    /* Responsive Styling */
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 20px;
+        width: 90%;
+        max-width: 100%;
+      }
+
+      .form-container img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="/" class="logout-button">Home</a>
+
+  <div class="container">
+    <h1>Plant Disease Detection Result</h1>
+
+    <div class="form-container">
+        <img src="{{ uploaded_image_path }}" alt="Uploaded Image">
+
+
+      {% if is_healthy %}
+        <div class="healthy-message">
+          <p>{{ prediction }}</p>
+        </div>
+      {% else %}
+        <div class="prediction-box">
+          <p>{{ prediction }}</p>
+        </div>
+      {% endif %}
+
+      <!-- Link to upload another image -->
+      <a href="{{ url_for('predict') }}" class="upload-link">Upload another image</a>
+    </div>
+  </div>
+
+</body>
+</html>

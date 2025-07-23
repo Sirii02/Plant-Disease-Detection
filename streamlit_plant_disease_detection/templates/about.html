@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{{ url_for('static', filename='image/login.jpg') }}") no-repeat center center/cover;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            width: 600px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            color: rgb(0, 0, 0);
+            margin-left: 600px;
+        }
+        h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .btn-back {
+            display: inline-block;
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.2);
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 20px;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>About Our Project</h2>
+        <p>This project focuses on detecting plant leaf diseases by training a deep learning model using convolutional neural networks (CNN). We first trained the model on a dataset containing healthy and diseased leaf images. The trained model is then used to predict the health status of new uploaded images through a user-friendly web interface. The website includes key features such as Login, Register, Contact, About, Predict, and Result pages for smooth user interaction. The core algorithm is built using a Sequential model structure with convolutional layers for feature extraction and dense layers for classification. The model architecture includes Conv2D layers with 32 and 16 filters, MaxPooling layers, and a final dense layer with softmax activation to predict three classes. Once logged in, users can upload leaf images to instantly receive prediction results. This system provides accurate, fast, and accessible plant disease diagnosis for users through a well-designed web platform.
+
+
+            </p>
+       
+        <a href="{{ url_for('index') }}" class="btn-back">Back to Home</a>
+    </div>
+</body>
+</html>
